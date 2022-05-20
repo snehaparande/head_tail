@@ -1,6 +1,6 @@
-const head = (text) => {
+const head = (text, noOfLines) => {
   const allLines = text.split('\n');
-  const requiredLines = allLines.slice(0, 10);
+  const requiredLines = allLines.slice(0, noOfLines);
   return requiredLines.join('\n');
 };
 
