@@ -1,11 +1,14 @@
 **Todo:**
-- [ ] Write a test case
-- [ ] Verify ```mocha```
+- [ ] Make ```head``` function work for 10 lines or less
+- [ ] Make ```head``` function work for more than 10 lines
+- [ ] Make ```head``` work on file content instade of file
 
 **Maybe:**
 
 
 **Done:**
+- [x] Verify ```mocha```
+- [x] Write a test case
 - [x] Make ```testHead.js```
 - [x] Make ```test``` and ```src``` directories
 - [x] Cerate a readme for contract.
