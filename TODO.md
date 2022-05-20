@@ -1,11 +1,12 @@
 **Todo:**
-- [ ] Make ```head``` function work for more than 10 lines
+- [ ] Make ```head``` function work for count (-n) option
 - [ ] Make ```head``` work on file content instade of file
 
 **Maybe:**
 
 
 **Done:**
+- [x] Make ```head``` function work for more than 10 lines
 - [x] Make ```head``` function work for 10 lines or less
 - [x] Verify ```mocha```
 - [x] Write a test case
