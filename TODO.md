@@ -7,6 +7,9 @@
 
 
 **Done:**
+- [x] Make `head` function
+  - [x] It takes `text` and `option` as argument and returns the head of `text` based on the `option`
+  - [x] `option` argument is an object having `option` and `optionArg` as keys
 - [x] Rename function `head` to `cutText`
 - [x] Take the `seperator` and `count` as object
 - [x] Change `assert.equal` to `assert.strictEqual` in tests

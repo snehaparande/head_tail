@@ -9,4 +9,11 @@ const cutText = (text, { separator, count }) => {
   return joinBy(requiredEles, separator);
 };
 
+const head = (text, { option, optionArg }) => {
+  const separators = { '-n': '\n', '-c': '' };
+  const separator = separators[option];
+  return cutText(text, { separator, count: optionArg });
+};
+
 exports.cutText = cutText;
+exports.head = head;

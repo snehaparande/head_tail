@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { cutText } = require('../src/headLib.js');
+const { cutText, head } = require('../src/headLib.js');
 
 describe('cutText', () => {
   it('Should return the same line when 1 line is given', () => {
@@ -51,6 +51,19 @@ describe('cutText', () => {
   it('Should return all characters when count exceeds total', () => {
     const text = 'line';
     assert.strictEqual(cutText(text, { separator: '', count: 6 }), 'line');
+  });
+
+});
+
+describe('head', () => {
+  it('Should return 2 lines from the text', () => {
+    const text = 'l1\nl2\nl3';
+    assert.strictEqual(head(text, { option: '-n', optionArg: 2 }), 'l1\nl2');
+  });
+
+  it('Should return 2 charactors from the text', () => {
+    const text = 'l1\nl2\nl3';
+    assert.strictEqual(head(text, { option: '-c', optionArg: 2 }), 'l1');
   });
 
 });
