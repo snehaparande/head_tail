@@ -1,8 +1,10 @@
 **Todo:**
+- [ ] Implement the bytes (-c) option for ```head``` function
+- [ ] Change the name of function ```cutLines``` to ```cutElements```
 - [ ] Make ```head``` work on file content instade of file
 
 **Maybe:**
-- [ ] Consider taking count (-n) option as an object
+- [ ] Consider taking options as object to the ```head``` function
 
 
 **Done:**
