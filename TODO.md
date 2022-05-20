@@ -1,5 +1,4 @@
 **Todo:**
-- [ ] Test `head` for bytes option
 - [ ] Make a `headMain` function
 - [ ] Implement the bytes (-c) option for `head` function
 - [ ] Make `head` work on file content instade of file
@@ -8,6 +7,8 @@
 
 
 **Done:**
+- [x] Change `assert.equal` to `assert.strictEqual` in tests
+- [x] Test `head` for bytes option
 - [x] Change `splitLines` and `joinLines` to `splitBy` and `joinBy`
   - [x] `splitBy` and `joinBy` should take the separator as second argument.
 - [x] Change the contract of `head` function
