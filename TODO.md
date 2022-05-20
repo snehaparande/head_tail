@@ -1,4 +1,5 @@
 **Todo:**
+- [ ] Rename function `head` to `cutText`
 - [ ] Make a `headMain` function
 - [ ] Implement the bytes (-c) option for `head` function
 - [ ] Make `head` work on file content instade of file
