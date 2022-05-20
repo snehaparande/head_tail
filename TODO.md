@@ -3,10 +3,10 @@
 - [ ] Make ```head``` work on file content instade of file
 
 **Maybe:**
-- [ ] Consider taking options as object to the ```head``` function
 
 
 **Done:**
+- [x] Consider taking options as object to the ```head``` function
 - [x] Extract ```splitLines```, ```joinLines``` and ```newline```
 - [x] Change the name of function ```cutLines``` to ```cutElements```
 - [x] Extract a function from ```head``` for cutting lines
