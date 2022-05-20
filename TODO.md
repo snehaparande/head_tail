@@ -1,6 +1,6 @@
 **Todo:**
-- [ ] Change the contract of `head` function
-  - [ ] `head` will take `text` and `separator` and `count`
+- [ ] Change `splitLines` and `joinLines` to `splitBy` and `joinBy`
+  - [ ] `splitBy` and `joinBy` should take the separator as second argument.
 - [ ] Implement the bytes (-c) option for `head` function
 - [ ] Make `head` work on file content instade of file
 
@@ -8,6 +8,8 @@
 
 
 **Done:**
+- [x] Change the contract of `head` function
+  - [x] `head` will take `text`, `separator` and `count` as arguments
 - [x] Consider taking options as object to the `head` function
 - [x] Extract `splitLines`, `joinLines` and `newline`
 - [x] Change the name of function `cutLines` to `cutElements`

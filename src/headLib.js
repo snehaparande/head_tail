@@ -4,9 +4,9 @@ const joinLines = (requiredLines) => requiredLines.join(NEW_LINE);
 
 const cutElements = (elements, noOfElements) => elements.slice(0, noOfElements);
 
-const head = (text, { noOfLines }) => {
+const head = (text, separator, count) => {
   const allLines = splitLines(text);
-  const requiredLines = cutElements(allLines, noOfLines);
+  const requiredLines = cutElements(allLines, count);
   return joinLines(requiredLines);
 };
 
