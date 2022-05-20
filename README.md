@@ -7,7 +7,7 @@ head file
 head -c bytes file
   displays the first bytes of the specified file.
 
-head -h
+head --help
   displays the usage. 
   usage: head [-n lines | -c bytes] [file ...]
 
