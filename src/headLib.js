@@ -1,13 +1,12 @@
-const NEW_LINE = '\n';
-const splitLines = (text) => text.split(NEW_LINE);
-const joinLines = (requiredLines) => requiredLines.join(NEW_LINE);
+const splitBy = (text, separator) => text.split(separator);
+const joinBy = (requiredLines, separator) => requiredLines.join(separator);
 
 const cutElements = (elements, noOfElements) => elements.slice(0, noOfElements);
 
 const head = (text, separator, count) => {
-  const allLines = splitLines(text);
-  const requiredLines = cutElements(allLines, count);
-  return joinLines(requiredLines);
+  const allElements = splitBy(text, separator);
+  const requiredEles = cutElements(allElements, count);
+  return joinBy(requiredEles, separator);
 };
 
 exports.head = head;

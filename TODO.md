@@ -1,6 +1,6 @@
 **Todo:**
-- [ ] Change `splitLines` and `joinLines` to `splitBy` and `joinBy`
-  - [ ] `splitBy` and `joinBy` should take the separator as second argument.
+- [ ] Test `head` for bytes option
+- [ ] Make a `headMain` function
 - [ ] Implement the bytes (-c) option for `head` function
 - [ ] Make `head` work on file content instade of file
 
@@ -8,6 +8,8 @@
 
 
 **Done:**
+- [x] Change `splitLines` and `joinLines` to `splitBy` and `joinBy`
+  - [x] `splitBy` and `joinBy` should take the separator as second argument.
 - [x] Change the contract of `head` function
   - [x] `head` will take `text`, `separator` and `count` as arguments
 - [x] Consider taking options as object to the `head` function
