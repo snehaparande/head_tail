@@ -1,5 +1,4 @@
 **Todo:**
-- [ ] Extract a function from ```head``` for cutting lines
 - [ ] Make ```head``` work on file content instade of file
 
 **Maybe:**
@@ -7,6 +6,7 @@
 
 
 **Done:**
+- [x] Extract a function from ```head``` for cutting lines
 - [x] Make ```head``` function work for count (-n) option
 - [x] Make ```head``` function work for more than 10 lines
 - [x] Make ```head``` function work for 10 lines or less
