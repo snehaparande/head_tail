@@ -1,6 +1,6 @@
 **Todo:**
+- [ ] Extract ```splitLines```, ```joinLines``` and ```newline```
 - [ ] Implement the bytes (-c) option for ```head``` function
-- [ ] Change the name of function ```cutLines``` to ```cutElements```
 - [ ] Make ```head``` work on file content instade of file
 
 **Maybe:**
@@ -8,6 +8,7 @@
 
 
 **Done:**
+- [x] Change the name of function ```cutLines``` to ```cutElements```
 - [x] Extract a function from ```head``` for cutting lines
 - [x] Make ```head``` function work for count (-n) option
 - [x] Make ```head``` function work for more than 10 lines

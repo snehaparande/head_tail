@@ -1,8 +1,8 @@
-const cutLines = (lines, noOfLines) => lines.slice(0, noOfLines);
+const cutElements = (elements, noOfElements) => elements.slice(0, noOfElements);
 
 const head = (text, noOfLines) => {
   const allLines = text.split('\n');
-  return cutLines(allLines, noOfLines).join('\n');
+  return cutElements(allLines, noOfLines).join('\n');
 };
 
 exports.head = head;
