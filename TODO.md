@@ -1,16 +1,17 @@
 **Todo:**
-- [ ] Validate the arguments of `headMain`
 - [ ] Make `parseArgs` handle different options
 - [ ] Make `parseArgs` handle options and option arguments together 
 - [ ] Make `parseArgs` work for multiple files
 - [ ] Make `head` work for multiple files
-- [ ] Validate count of lines and bytes
+- [ ] Validate the arguments of `headMain`
 
 
 **Maybe:**
 
 
 **Done:**
+- [x] Validate options
+- [x] Validate count of lines and bytes
 - [x] Make head.js run from command line
 - [x] Make `parseArgs` handle same options multiple times
 - [x] Test `parseArgs`

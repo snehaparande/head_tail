@@ -30,4 +30,18 @@ describe('parseArgs', () => {
     });
   });
 
+  it('Should throw an error when option is invalid', () => {
+    assert.throws(() => parseArgs(['-h']), {
+      name: 'illegalOption',
+      message: 'head: illegal option -- h\nusage: head [-n lines | -c bytes] [file ...]'
+    });
+  });
+
+  it('Should throw an error when count is invalid', () => {
+    assert.throws(() => parseArgs(['-n', '0', 'a.txt']), {
+      name: 'illegalCount',
+      message: 'head: illegal line count -- 0'
+    });
+  });
+
 });
