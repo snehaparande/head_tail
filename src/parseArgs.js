@@ -5,10 +5,13 @@ const parseArgs = (args) => {
     optionArg: 10
   };
 
-  if (args[0].match(/^-.$/)) {
-    defaultOption.option = args[0];
-    defaultOption.optionArg = args[1];
+  for (let index = 0; index < args.length - 1; index = index + 2) {
+    if (args[index].match(/^-.$/)) {
+      defaultOption.option = args[index];
+      defaultOption.optionArg = args[index + 1];
+    }
   }
+
 
   return { fileName, option: defaultOption };
 };

@@ -1,5 +1,4 @@
 **Todo:**
-- [ ] Make `parseAgrs` handle same options multiple times
 - [ ] Make `parseAgrs` handle different options
 - [ ] Make `parseAgrs` handle options and option arguments together 
 - [ ] Make `parseAgrs` work for multiple files
@@ -10,6 +9,7 @@
 
 
 **Done:**
+- [x] Make `parseAgrs` handle same options multiple times
 - [x] Test `parseAgrs`
 - [x] Make `parseAgrs`
   - [x] It takes the arguments and returns the parsed arguments
