@@ -1,7 +1,9 @@
 **Todo:**
-- [ ] Make `parseAgrs` handle different options
-- [ ] Make `parseAgrs` handle options and option arguments together 
-- [ ] Make `parseAgrs` work for multiple files
+- [ ] Validate the arguments of `headMain`
+- [ ] Make `parseArgs` handle different options
+- [ ] Make `parseArgs` handle options and option arguments together 
+- [ ] Make `parseArgs` work for multiple files
+- [ ] Make `head` work for multiple files
 - [ ] Validate count of lines and bytes
 
 
@@ -9,9 +11,10 @@
 
 
 **Done:**
-- [x] Make `parseAgrs` handle same options multiple times
-- [x] Test `parseAgrs`
-- [x] Make `parseAgrs`
+- [x] Make head.js run from command line
+- [x] Make `parseArgs` handle same options multiple times
+- [x] Test `parseArgs`
+- [x] Make `parseArgs`
   - [x] It takes the arguments and returns the parsed arguments
 - [x] Make a `headMain` function
  - [x] It should take `fileReader` and `arguments` 

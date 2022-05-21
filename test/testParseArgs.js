@@ -10,21 +10,21 @@ describe('parseArgs', () => {
   });
 
   it('Should parse -n option along with file name ', () => {
-    assert.deepStrictEqual(parseArgs(['-n', 5, 'a.txt']), {
+    assert.deepStrictEqual(parseArgs(['-n', '5', 'a.txt']), {
       fileName: 'a.txt',
       option: { option: '-n', optionArg: 5 }
     });
   });
 
   it('Should parse -c option along with file name ', () => {
-    assert.deepStrictEqual(parseArgs(['-c', 5, 'a.txt']), {
+    assert.deepStrictEqual(parseArgs(['-c', '5', 'a.txt']), {
       fileName: 'a.txt',
       option: { option: '-c', optionArg: 5 }
     });
   });
 
   it('Should parse same option multiple times along with file name ', () => {
-    assert.deepStrictEqual(parseArgs(['-n', 5, '-n', 3, 'a.txt']), {
+    assert.deepStrictEqual(parseArgs(['-n', '5', '-n', '3', 'a.txt']), {
       fileName: 'a.txt',
       option: { option: '-n', optionArg: 3 }
     });

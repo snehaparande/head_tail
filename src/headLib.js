@@ -18,8 +18,8 @@ const head = (text, { option, optionArg }) => {
 };
 
 const headMain = (readFile, ...args) => {
-  let content;
   const { fileName, option } = parseArgs(args);
+  let content;
   try {
     content = readFile(fileName, 'utf8');
   } catch (error) {
