@@ -1,12 +1,23 @@
 **Todo:**
-- [ ] Make a `headMain` function
-- [ ] Implement the bytes (-c) option for `head` function
-- [ ] Make `head` work on file content instade of file
+- [ ] Make `parseAgrs` handle same options multiple times
+- [ ] Make `parseAgrs` handle different options
+- [ ] Make `parseAgrs` handle options and option arguments together 
+- [ ] Make `parseAgrs` work for multiple files
+- [ ] Validate count of lines and bytes
+
 
 **Maybe:**
 
 
 **Done:**
+- [x] Test `parseAgrs`
+- [x] Make `parseAgrs`
+  - [x] It takes the arguments and returns the parsed arguments
+- [x] Make a `headMain` function
+ - [x] It should take `fileReader` and `arguments` 
+ - [x] Should return the head of the given text
+- [x] Make `head` work on file content instade of file
+- [x] Implement the bytes (-c) option for `head` function
 - [x] Make `head` function
   - [x] It takes `text` and `option` as argument and returns the head of `text` based on the `option`
   - [x] `option` argument is an object having `option` and `optionArg` as keys

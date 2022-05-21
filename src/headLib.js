@@ -1,3 +1,5 @@
+const { parseArgs } = require('./parseArgs');
+
 const splitBy = (text, separator) => text.split(separator);
 const joinBy = (requiredLines, separator) => requiredLines.join(separator);
 
@@ -15,5 +17,21 @@ const head = (text, { option, optionArg }) => {
   return cutText(text, { separator, count: optionArg });
 };
 
+const headMain = (readFile, ...args) => {
+  let content;
+  const { fileName, option } = parseArgs(args);
+  try {
+    content = readFile(fileName, 'utf8');
+  } catch (error) {
+    throw {
+      name: 'readFileError',
+      message: `head: ${fileName}: No such file or directory`,
+      fileName
+    };
+  }
+  return head(content, option);
+};
+
 exports.cutText = cutText;
 exports.head = head;
+exports.headMain = headMain;
