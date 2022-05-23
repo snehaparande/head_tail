@@ -1,3 +1,5 @@
+const { createIterator } = require('./iterator.js');
+
 const validateArguments = (args) => {
   if (args.length < 1) {
     throw {
@@ -32,21 +34,35 @@ const validCount = (flag, count) => {
   };
 };
 
-const parseArgs = (args) => {
-  validateArguments(args);
+const isOption = (option) => {
+  return option.startsWith('-');
+};
 
-  const defaultOption = {
+const structureArgs = (args) => {
+  return args.flatMap(arg => {
+    return isOption(arg) ? [arg.slice(0, 2), arg.slice(2)] : arg;
+  }).filter(element => element.length !== 0);
+};
+
+const parseArgs = (args) => {
+  const argsIterator = createIterator(structureArgs(args));
+
+  const option = {
     option: '-n',
     optionArg: 10
   };
 
-  for (let index = 0; index < args.length - 1; index = index + 2) {
-    defaultOption.option = validOption(args[index]);
-    defaultOption.optionArg = validCount(args[index], args[index + 1]);
+  while (isOption(argsIterator.current())) {
+    option.option = validOption(argsIterator.current());
+    option.optionArg = validCount(option.option, argsIterator.next());
+    argsIterator.next();
   }
 
-  const fileName = args[args.length - 1];
-  return { fileName, option: defaultOption };
+  return {
+    fileName: argsIterator.restOf(),
+    option
+  };
+
 };
 
 exports.parseArgs = parseArgs;

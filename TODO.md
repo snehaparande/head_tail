@@ -1,9 +1,7 @@
 **Todo:**
-- [ ] Make `parseArgs` work for multiple files
-  - [ ] Take an array for fileNames
+- [ ] Make `headMain` work for multiple files
   - [ ] Add header for each file
 - [ ] Make `parseArgs` handle different options
-- [ ] Make `parseArgs` handle options and option arguments together 
 - [ ] Make `head` work for multiple files
 - [ ] Validate the arguments of `headMain`
 
@@ -12,6 +10,10 @@
 
 
 **Done:**
+- [x] Make `parseArgs` work for multiple files
+  - [x] Take an array for fileNames
+- [x] Use iterator in `parseArgs` for arguments
+- [x] Make `parseArgs` handle options and option arguments together 
 - [x] Validate options
 - [x] Validate count of lines and bytes
 - [x] Make head.js run from command line

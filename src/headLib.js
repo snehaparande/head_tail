@@ -21,12 +21,12 @@ const headMain = (readFile, ...args) => {
   const { fileName, option } = parseArgs(args);
   let content;
   try {
-    content = readFile(fileName, 'utf8');
+    content = readFile(fileName[0], 'utf8');
   } catch (error) {
     throw {
       name: 'readFileError',
-      message: `head: ${fileName}: No such file or directory`,
-      fileName
+      message: `head: ${fileName[0]}: No such file or directory`,
+      fileName: fileName[0]
     };
   }
   return head(content, option);

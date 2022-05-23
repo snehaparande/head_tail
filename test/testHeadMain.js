@@ -29,13 +29,13 @@ describe('headMain', () => {
   it('Should return first 2 lines of given file', () => {
     const mockedReadFile = mockReadFile('a.txt', 'a\nb\nc\nd\ne');
     const expected = 'a\nb';
-    assert.strictEqual(headMain(mockedReadFile, '-n', 2, 'a.txt'), expected);
+    assert.strictEqual(headMain(mockedReadFile, '-n', '2', 'a.txt'), expected);
   });
 
   it('Should return first 2 characters of given file', () => {
     const mockedReadFile = mockReadFile('a.txt', 'line1\nline2');
     const expected = 'li';
-    assert.strictEqual(headMain(mockedReadFile, '-c', 2, 'a.txt'), expected);
+    assert.strictEqual(headMain(mockedReadFile, '-c', '2', 'a.txt'), expected);
   });
 
 });
