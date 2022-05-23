@@ -1,7 +1,9 @@
 **Todo:**
+- [ ] Make `parseArgs` work for multiple files
+  - [ ] Take an array for fileNames
+  - [ ] Add header for each file
 - [ ] Make `parseArgs` handle different options
 - [ ] Make `parseArgs` handle options and option arguments together 
-- [ ] Make `parseArgs` work for multiple files
 - [ ] Make `head` work for multiple files
 - [ ] Validate the arguments of `headMain`
 

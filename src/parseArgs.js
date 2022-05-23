@@ -6,11 +6,11 @@ const validateArguments = (args) => {
     };
   }
   if (args[0].match(/^-/)) {
-    isValidOption(args[0])
+    validOption(args[0]);
   }
 };
 
-const isValidOption = option => {
+const validOption = option => {
   if (option.match(/^-[nc]$/)) {
     return option;
   }
@@ -20,7 +20,7 @@ const isValidOption = option => {
   };
 };
 
-const isValidCount = (flag, count) => {
+const validCount = (flag, count) => {
   if (+count > 0) {
     return +count;
   }
@@ -41,8 +41,8 @@ const parseArgs = (args) => {
   };
 
   for (let index = 0; index < args.length - 1; index = index + 2) {
-    defaultOption.option = isValidOption(args[index]);
-    defaultOption.optionArg = isValidCount(args[index], args[index + 1]);
+    defaultOption.option = validOption(args[index]);
+    defaultOption.optionArg = validCount(args[index], args[index + 1]);
   }
 
   const fileName = args[args.length - 1];
