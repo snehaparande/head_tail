@@ -1,5 +1,4 @@
 **Todo:**
-- [ ] Move validation functions to separate file
 - [ ] Test `getResult`
 - [ ] Print the output from `headMain` instead of `main`
 - [ ] Make `headMain` work for multiple files
@@ -14,6 +13,7 @@
 
 
 **Done:**
+- [x] Move validation functions to separate file
 - [x] Make the `parseArgs` show the usage when no file is given
 - [x] Make `parseArgs` work for multiple files
   - [x] Take an array for fileNames

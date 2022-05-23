@@ -1,4 +1,5 @@
 const { parseArgs } = require('./parseArgs');
+const { fileNotFoundError } = require('./validation.js');
 
 const cutText = (text, { separator, count }) => {
   const allElements = text.split(separator);
@@ -19,11 +20,7 @@ const getResults = (readFile, { fileName, option }) => {
   } catch (error) {
     return {
       fileName,
-      error: {
-        name: 'readFileError',
-        message: `head: ${fileName}: No such file or directory`,
-        fileName: fileName
-      }
+      error: fileNotFoundError(fileName)
     };
   }
   return { fileName, result: head(content, option) };

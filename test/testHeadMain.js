@@ -30,7 +30,6 @@ describe('headMain', () => {
       }
     }];
     assert.deepStrictEqual(headMain(mockedReadFile, 'b.txt'), expected);
-    // assert.throws(() => headMain(mockedReadFile, 'b.txt'), expected);
   });
 
   it('Should return first 2 lines of given file', () => {
