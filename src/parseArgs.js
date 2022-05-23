@@ -1,25 +1,31 @@
 const { createIterator } = require('./iterator.js');
 
-const validateArguments = (args) => {
-  if (args.length < 1) {
-    throw {
-      name: 'InvalidArgument',
-      message: 'usage: head [-n lines | -c bytes] [file ...]'
-    };
-  }
-  if (args[0].match(/^-/)) {
-    validOption(args[0]);
-  }
+const usageError = () => {
+  return {
+    name: 'usageError',
+    message: 'usage: head [-n lines | -c bytes] [file ...]'
+  };
+};
+
+const illegalOptionError = option => {
+  return {
+    name: 'illegalOption',
+    message: `head: illegal option -- ${option[1]}\n${usageError().message}`
+  };
+};
+
+const illegalCountError = (option, count) => {
+  return {
+    name: 'illegalCount',
+    message: `head: illegal ${option} count -- ${count}`
+  };
 };
 
 const validOption = option => {
   if (option.match(/^-[nc]$/)) {
     return option;
   }
-  throw {
-    name: 'illegalOption',
-    message: `head: illegal option -- ${option[1]}\nusage: head [-n lines | -c bytes] [file ...]`
-  };
+  throw illegalOptionError(option);
 };
 
 const validCount = (flag, count) => {
@@ -27,42 +33,49 @@ const validCount = (flag, count) => {
     return +count;
   }
   const mapOption = { '-n': 'line', '-c': 'byte' };
-  const option = mapOption[flag];
-  throw {
-    name: 'illegalCount',
-    message: `head: illegal ${option} count -- ${count}`
-  };
+  throw illegalCountError(mapOption[flag], count);
 };
 
 const isOption = (option) => {
   return option.startsWith('-');
 };
 
-const structureArgs = (args) => {
-  return args.flatMap(arg => {
+const splitCombinedOptions = (args) => {
+  const splitedOptions = args.flatMap(arg => {
     return isOption(arg) ? [arg.slice(0, 2), arg.slice(2)] : arg;
-  }).filter(element => element.length !== 0);
+  });
+  return splitedOptions.filter(element => element.length !== 0);
+};
+
+const validFiles = (files) => {
+  if (files.length !== 0) {
+    return files;
+  }
+  throw usageError();
 };
 
 const parseArgs = (args) => {
-  const argsIterator = createIterator(structureArgs(args));
+  const argsIterator = createIterator(splitCombinedOptions(args));
 
   const option = {
     option: '-n',
     optionArg: 10
   };
 
-  while (isOption(argsIterator.current())) {
+  while (argsIterator.current() && isOption(argsIterator.current())) {
     option.option = validOption(argsIterator.current());
     option.optionArg = validCount(option.option, argsIterator.next());
     argsIterator.next();
   }
 
   return {
-    fileName: argsIterator.restOf(),
+    files: validFiles(argsIterator.restOf()),
     option
   };
 
 };
 
 exports.parseArgs = parseArgs;
+exports.validCount = validCount;
+exports.validOption = validOption;
+exports.splitCombinedOptions = splitCombinedOptions;

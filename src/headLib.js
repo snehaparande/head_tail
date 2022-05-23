@@ -1,14 +1,9 @@
 const { parseArgs } = require('./parseArgs');
 
-const splitBy = (text, separator) => text.split(separator);
-const joinBy = (requiredLines, separator) => requiredLines.join(separator);
-
-const cutElements = (elements, noOfElements) => elements.slice(0, noOfElements);
-
 const cutText = (text, { separator, count }) => {
-  const allElements = splitBy(text, separator);
-  const requiredEles = cutElements(allElements, count);
-  return joinBy(requiredEles, separator);
+  const allElements = text.split(separator);
+  const requiredEles = allElements.slice(0, count);
+  return requiredEles.join(separator);
 };
 
 const head = (text, { option, optionArg }) => {
@@ -17,19 +12,29 @@ const head = (text, { option, optionArg }) => {
   return cutText(text, { separator, count: optionArg });
 };
 
-const headMain = (readFile, ...args) => {
-  const { fileName, option } = parseArgs(args);
+const getResults = (readFile, { fileName, option }) => {
   let content;
   try {
-    content = readFile(fileName[0], 'utf8');
+    content = readFile(fileName, 'utf8');
   } catch (error) {
-    throw {
-      name: 'readFileError',
-      message: `head: ${fileName[0]}: No such file or directory`,
-      fileName: fileName[0]
+    return {
+      fileName,
+      error: {
+        name: 'readFileError',
+        message: `head: ${fileName}: No such file or directory`,
+        fileName: fileName
+      }
     };
   }
-  return head(content, option);
+  return { fileName, result: head(content, option) };
+};
+
+const headMain = (readFile, ...args) => {
+  const { files, option } = parseArgs(args);
+
+  return files.map(fileName => {
+    return getResults(readFile, { fileName, option });
+  });
 };
 
 exports.cutText = cutText;

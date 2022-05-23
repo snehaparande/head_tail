@@ -1,7 +1,11 @@
 **Todo:**
+- [ ] Move validation functions to separate file
+- [ ] Test `getResult`
+- [ ] Print the output from `headMain` instead of `main`
 - [ ] Make `headMain` work for multiple files
   - [ ] Add header for each file
 - [ ] Make `parseArgs` handle different options
+- [ ] Make `parseArgs` parse `-[number]`
 - [ ] Make `head` work for multiple files
 - [ ] Validate the arguments of `headMain`
 
@@ -10,6 +14,7 @@
 
 
 **Done:**
+- [x] Make the `parseArgs` show the usage when no file is given
 - [x] Make `parseArgs` work for multiple files
   - [x] Take an array for fileNames
 - [x] Use iterator in `parseArgs` for arguments
