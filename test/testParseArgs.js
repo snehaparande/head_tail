@@ -128,4 +128,11 @@ describe('parseArgs', () => {
     });
   });
 
+  it('should throw an error when options are combined', () => {
+    assert.throws(() => parseArgs(['-n', '2', '-c', '2', 'a.txt']), {
+      name: 'combinedOptionsError',
+      message: 'head: can\'t combine line and byte counts'
+    });
+  });
+
 });

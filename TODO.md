@@ -2,8 +2,6 @@
 - [ ] Print the output from `headMain` instead of `main`
 - [ ] Make `headMain` work for multiple files
   - [ ] Add header for each file
-- [ ] Make `parseArgs` handle different options
-- [ ] Make `parseArgs` parse `-[number]`
 - [ ] Make `head` work for multiple files
 - [ ] Validate the arguments of `headMain`
 
@@ -12,6 +10,8 @@
 
 
 **Done:**
+- [x] Make `parseArgs` handle combined options
+- [x] Make `parseArgs` parse `-[number]`
 - [x] Test `getResult`
 - [x] Move validation functions to separate file
 - [x] Make the `parseArgs` show the usage when no file is given

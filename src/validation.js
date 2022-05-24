@@ -27,9 +27,16 @@ const fileNotFoundError = (fileName) => {
   };
 };
 
+const combinedOptionsError = () => {
+  return {
+    name: 'combinedOptionsError',
+    message: 'head: can\'t combine line and byte counts'
+  };
+};
+
 const validOption = option => {
-  // validOptions.includes(option);
-  if (option.match(/^-[nc]$/)) {
+  const validOptions = ['-n', '-c'];
+  if (validOptions.includes(option)) {
     return option;
   }
   throw illegalOptionError(option);
@@ -43,6 +50,13 @@ const validCount = (flag, count) => {
   throw illegalCountError(mapOption[flag], count);
 };
 
+const validateCombinedOptions = (args) => {
+  if (args.includes('-n') && args.includes('-c')) {
+    throw combinedOptionsError();
+  }
+  return true;
+};
+
 const validFiles = (files) => {
   if (files.length !== 0) {
     return files;
@@ -54,4 +68,5 @@ exports.usageError = usageError;
 exports.fileNotFoundError = fileNotFoundError;
 exports.validCount = validCount;
 exports.validOption = validOption;
+exports.validateCombinedOptions = validateCombinedOptions;
 exports.validFiles = validFiles;

@@ -1,5 +1,10 @@
 const { createIterator } = require('./iterator.js');
-const { validCount, validOption, validFiles } = require('./validation.js');
+const {
+  validCount,
+  validOption,
+  validFiles,
+  validateCombinedOptions
+} = require('./validation.js');
 
 const isOption = (option) => {
   return option.startsWith('-');
@@ -20,12 +25,14 @@ const splitCombinedOptions = (args) => {
 };
 
 const parseArgs = (args) => {
-  const argsIterator = createIterator(splitCombinedOptions(args));
+  const splittedArgs = splitCombinedOptions(args);
+  validateCombinedOptions(splittedArgs);
+  const argsIterator = createIterator(splittedArgs);
+
   const options = {
     option: '-n',
     optionArg: 10
   };
-
   while (argsIterator.current() && isOption(argsIterator.current())) {
     options.option = validOption(argsIterator.current());
     options.optionArg = validCount(options.option, argsIterator.next());
