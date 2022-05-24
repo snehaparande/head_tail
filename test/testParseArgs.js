@@ -121,4 +121,11 @@ describe('parseArgs', () => {
     });
   });
 
+  it('Should parse arguments from format -[number]', () => {
+    assert.deepStrictEqual(parseArgs(['-2', 'a.txt']), {
+      files: ['a.txt'],
+      options: { option: '-n', optionArg: 2 }
+    });
+  });
+
 });
