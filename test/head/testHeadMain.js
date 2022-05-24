@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { headMain, getResult } = require('../src/headLib.js');
+const { headMain, getResult } = require('../../src/head/headLib.js');
 
 const mockReadFile = (fileName, content) => {
   return (actualFile, unicode) => {
