@@ -4,7 +4,11 @@ const { headMain } = require('./src/headLib.js');
 
 const main = () => {
   try {
-    console.log(headMain(fs.readFileSync, ...process.argv.slice(2)));
+    headMain(fs.readFileSync,
+      console.error,
+      console.log,
+      ...process.argv.slice(2)
+    );
   } catch (error) {
     console.error(error.message);
   }

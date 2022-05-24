@@ -20,17 +20,36 @@ const getResult = (readFile, fileName, options) => {
   } catch (error) {
     return {
       fileName,
-      error: fileNotFoundError(fileName)
+      error: true,
+      result: fileNotFoundError(fileName)
     };
   }
-  return { fileName, result: head(content, options) };
+  return { fileName, error: false, result: head(content, options) };
 };
 
-const headMain = (readFile, ...args) => {
+const headMain = (readFile, consoleError, consoleLog, ...args) => {
   const { files, options } = parseArgs(args);
 
-  return files.map(fileName => {
+  const results = files.map(fileName => {
     return getResult(readFile, fileName, options);
+  });
+
+  if (results.length === 1) {
+    if (results[0].error) {
+      consoleError(results[0].result.message);
+    } else {
+      consoleLog(results[0].result);
+    }
+    return;
+  }
+
+  results.forEach(element => {
+    if (element.error) {
+      consoleError(element.result.message);
+    } else {
+      consoleLog(`==> ${element.fileName} <==`);
+      consoleLog(element.result);
+    }
   });
 };
 

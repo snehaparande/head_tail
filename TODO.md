@@ -1,15 +1,19 @@
 **Todo:**
-- [ ] Print the output from `headMain` instead of `main`
-- [ ] Make `headMain` work for multiple files
-  - [ ] Add header for each file
-- [ ] Make `head` work for multiple files
-- [ ] Validate the arguments of `headMain`
-
+- [ ] Refactor `headMain`
+  - [ ] Ectract a function for printing
+- [ ] Return exit code
 
 **Maybe:**
 
 
 **Done:**
+- [x] Print the output from `headMain` instead of `main`
+- [x] Make `headMain` work for multiple files
+  - [x] Add header for each file
+- [x] Make `head` work for multiple files
+- [x] Validate the arguments of `headMain`
+- [x] Make `getResult` return return error staturn also
+  -[x] Change the structure of the return object
 - [x] Make `parseArgs` handle combined options
 - [x] Make `parseArgs` parse `-[number]`
 - [x] Test `getResult`

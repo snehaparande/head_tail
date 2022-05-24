@@ -16,6 +16,7 @@ describe('getResult', () => {
   it('Should return an object containing file name and head', () => {
     assert.deepStrictEqual(getResult(mockedReadFile, 'a.txt', options), {
       fileName: 'a.txt',
+      error: false,
       result: 'a\nb'
     });
   });
@@ -23,7 +24,8 @@ describe('getResult', () => {
   it('Should return object containing file name and error', () => {
     assert.deepStrictEqual(getResult(mockedReadFile, 'b.txt', options), {
       fileName: 'b.txt',
-      error: {
+      error: true,
+      result: {
         name: 'readFileError',
         message: 'head: b.txt: No such file or directory',
         fileName: 'b.txt'
@@ -33,64 +35,78 @@ describe('getResult', () => {
 
 });
 
+const mockConsole = (expectedEles, actualEles) => {
+  let index = 0;
+  return (arg) => {
+    actualEles.push(arg);
+    assert.deepStrictEqual(arg, expectedEles[index]);
+    index++;
+  };
+};
+
 describe('headMain', () => {
   it('Should return the head of given file', () => {
     const content = 'a\nb\nc\nd\ne\nf\ng\nh\ni\nj\nk\nl';
     const mockedReadFile = mockReadFile('a.txt', content);
-    const expected = [{
-      fileName: 'a.txt',
-      result: 'a\nb\nc\nd\ne\nf\ng\nh\ni\nj'
-    }];
-    assert.deepStrictEqual(headMain(mockedReadFile, 'a.txt'), expected);
+    const expected = ['a\nb\nc\nd\ne\nf\ng\nh\ni\nj'];
+    const actual = [];
+    const mockedConsole = mockConsole(expected, actual);
+    headMain(mockedReadFile, mockedConsole, mockedConsole, 'a.txt');
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Should throw an error when file is not present', () => {
     const mockedReadFile = mockReadFile('a.txt', 'a\nb');
-    const expected = [{
-      fileName: 'b.txt',
-      error: {
-        name: 'readFileError',
-        message: 'head: b.txt: No such file or directory',
-        fileName: 'b.txt'
-      }
-    }];
-    assert.deepStrictEqual(headMain(mockedReadFile, 'b.txt'), expected);
+    const expected = ['head: b.txt: No such file or directory'];
+    const actual = [];
+    const mockedConsole = mockConsole(expected, actual);
+    headMain(mockedReadFile, mockedConsole, mockedConsole, 'b.txt');
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Should return first 2 lines of given file', () => {
     const mockedReadFile = mockReadFile('a.txt', 'a\nb\nc\nd\ne');
-    const expected = [{ fileName: 'a.txt', result: 'a\nb' }];
-    assert.deepStrictEqual(headMain(mockedReadFile, '-n', '2', 'a.txt'), expected);
+    const expected = ['a\nb'];
+    const actual = [];
+    const mockedConsole = mockConsole(expected, actual);
+    headMain(mockedReadFile, mockedConsole, mockedConsole, '-n', '2', 'a.txt');
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Should return first 2 characters of given file', () => {
     const mockedReadFile = mockReadFile('a.txt', 'line1\nline2');
-    const expected = [{ fileName: 'a.txt', result: 'li' }];
-    assert.deepStrictEqual(headMain(mockedReadFile, '-c', '2', 'a.txt'), expected);
+    const expected = ['li'];
+    const actual = [];
+    const mockedConsole = mockConsole(expected, actual);
+    headMain(mockedReadFile, mockedConsole, mockedConsole, '-c', '2', 'a.txt');
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Should return array of heads of given files', () => {
     const mockedReadFile = mockReadFile('a.txt', 'line1\nline2');
     const expected = [
-      { fileName: 'a.txt', result: 'line1\nline2' },
-      { fileName: 'a.txt', result: 'line1\nline2' }
+      '==> a.txt <==',
+      'line1\nline2',
+      '==> a.txt <==',
+      'line1\nline2'
     ];
-    assert.deepStrictEqual(headMain(mockedReadFile, 'a.txt', 'a.txt'), expected);
+    const actual = [];
+    const mockedConsole = mockConsole(expected, actual);
+    headMain(mockedReadFile, mockedConsole, mockedConsole, 'a.txt', 'a.txt');
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Should return array of results and errors for non existing files', () => {
     const mockedReadFile = mockReadFile('a.txt', 'line1\nline2');
     const expected = [
-      { fileName: 'a.txt', result: 'line1\nline2' },
-      {
-        fileName: 'b.txt', error: {
-          name: 'readFileError',
-          message: 'head: b.txt: No such file or directory',
-          fileName: 'b.txt'
-        }
-      }
+      '==> a.txt <==',
+      'line1\nline2',
+      'head: b.txt: No such file or directory'
     ];
-    assert.deepStrictEqual(headMain(mockedReadFile, 'a.txt', 'b.txt'), expected);
+    const actual = [];
+    const mockedConsole = mockConsole(expected, actual);
+    headMain(mockedReadFile, mockedConsole, mockedConsole, 'a.txt', 'b.txt');
+    assert.deepStrictEqual(actual, expected);
   });
 
 });
