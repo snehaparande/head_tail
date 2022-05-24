@@ -1,6 +1,6 @@
 const { parseArgs } = require('./parseArgs.js');
-const { print } = require('./print.js');
-const { fileNotFoundError } = require('./validation.js');
+const { print } = require('../print.js');
+const { fileNotFoundError } = require('../validation.js');
 
 const cutText = (text, { separator, count }) => {
   const allElements = text.split(separator);

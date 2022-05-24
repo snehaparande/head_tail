@@ -1,9 +1,17 @@
-**Todo:**
+## **Todo:**
+- [ ] Make separate directories for `head` and `tail` in `src` and `test`
+- [ ] Make `testTail.js`.
+- [ ] Write test case for tai
 
-**Maybe:**
+
+## **Maybe:**
 
 
-**Done:**
+## **Done:**
+**TAIL:**
+
+
+**HEAD:**
 - [x] Return exit code
 - [x] Refactor `headMain`
   - [x] Ectract a function for printing
