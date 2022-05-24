@@ -1,4 +1,5 @@
-const { parseArgs } = require('./parseArgs');
+const { parseArgs } = require('./parseArgs.js');
+const { print } = require('./print.js');
 const { fileNotFoundError } = require('./validation.js');
 
 const cutText = (text, { separator, count }) => {
@@ -34,23 +35,7 @@ const headMain = (readFile, consoleError, consoleLog, ...args) => {
     return getResult(readFile, fileName, options);
   });
 
-  if (results.length === 1) {
-    if (results[0].error) {
-      consoleError(results[0].result.message);
-    } else {
-      consoleLog(results[0].result);
-    }
-    return;
-  }
-
-  results.forEach(element => {
-    if (element.error) {
-      consoleError(element.result.message);
-    } else {
-      consoleLog(`==> ${element.fileName} <==`);
-      consoleLog(element.result);
-    }
-  });
+  return print(results, consoleLog, consoleError);
 };
 
 exports.cutText = cutText;

@@ -1,12 +1,12 @@
 **Todo:**
-- [ ] Refactor `headMain`
-  - [ ] Ectract a function for printing
-- [ ] Return exit code
 
 **Maybe:**
 
 
 **Done:**
+- [x] Return exit code
+- [x] Refactor `headMain`
+  - [x] Ectract a function for printing
 - [x] Print the output from `headMain` instead of `main`
 - [x] Make `headMain` work for multiple files
   - [x] Add header for each file
