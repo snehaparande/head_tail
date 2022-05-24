@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { headMain } = require('../src/headLib.js');
+const { headMain, getResult } = require('../src/headLib.js');
 
 const mockReadFile = (fileName, content) => {
   return (actualFile, unicode) => {
@@ -8,6 +8,31 @@ const mockReadFile = (fileName, content) => {
     return content;
   };
 };
+
+describe('getResult', () => {
+  const mockedReadFile = mockReadFile('a.txt', 'a\nb\nc');
+  const options = { option: '-n', optionArg: 2 };
+
+  it('Should return an object containing file name and head', () => {
+    assert.deepStrictEqual(getResult(mockedReadFile, 'a.txt', options), {
+      fileName: 'a.txt',
+      result: 'a\nb'
+    });
+  });
+
+  it('Should return object containing file name and error', () => {
+    assert.deepStrictEqual(getResult(mockedReadFile, 'b.txt', options), {
+      fileName: 'b.txt',
+      error: {
+        name: 'readFileError',
+        message: 'head: b.txt: No such file or directory',
+        fileName: 'b.txt'
+      }
+    });
+  });
+
+});
+
 describe('headMain', () => {
   it('Should return the head of given file', () => {
     const content = 'a\nb\nc\nd\ne\nf\ng\nh\ni\nj\nk\nl';

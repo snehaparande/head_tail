@@ -1,5 +1,4 @@
 **Todo:**
-- [ ] Test `getResult`
 - [ ] Print the output from `headMain` instead of `main`
 - [ ] Make `headMain` work for multiple files
   - [ ] Add header for each file
@@ -13,6 +12,7 @@
 
 
 **Done:**
+- [x] Test `getResult`
 - [x] Move validation functions to separate file
 - [x] Make the `parseArgs` show the usage when no file is given
 - [x] Make `parseArgs` work for multiple files

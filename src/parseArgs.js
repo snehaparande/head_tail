@@ -15,20 +15,20 @@ const splitCombinedOptions = (args) => {
 const parseArgs = (args) => {
   const argsIterator = createIterator(splitCombinedOptions(args));
 
-  const option = {
+  const options = {
     option: '-n',
     optionArg: 10
   };
 
   while (argsIterator.current() && isOption(argsIterator.current())) {
-    option.option = validOption(argsIterator.current());
-    option.optionArg = validCount(option.option, argsIterator.next());
+    options.option = validOption(argsIterator.current());
+    options.optionArg = validCount(options.option, argsIterator.next());
     argsIterator.next();
   }
 
   return {
     files: validFiles(argsIterator.restOf()),
-    option
+    options
   };
 };
 

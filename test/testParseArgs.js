@@ -50,28 +50,28 @@ describe('parseArgs', () => {
   it('Should parse only file name ', () => {
     assert.deepStrictEqual(parseArgs(['a.txt']), {
       files: ['a.txt'],
-      option: { option: '-n', optionArg: 10 }
+      options: { option: '-n', optionArg: 10 }
     });
   });
 
   it('Should parse -n option along with file name ', () => {
     assert.deepStrictEqual(parseArgs(['-n', '5', 'a.txt']), {
       files: ['a.txt'],
-      option: { option: '-n', optionArg: 5 }
+      options: { option: '-n', optionArg: 5 }
     });
   });
 
   it('Should parse -c option along with file name ', () => {
     assert.deepStrictEqual(parseArgs(['-c', '5', 'a.txt']), {
       files: ['a.txt'],
-      option: { option: '-c', optionArg: 5 }
+      options: { option: '-c', optionArg: 5 }
     });
   });
 
   it('Should parse same option multiple times along with file name ', () => {
     assert.deepStrictEqual(parseArgs(['-n', '5', '-n', '3', 'a.txt']), {
       files: ['a.txt'],
-      option: { option: '-n', optionArg: 3 }
+      options: { option: '-n', optionArg: 3 }
     });
   });
 
@@ -92,25 +92,25 @@ describe('parseArgs', () => {
   it('Should parse the option when option and count are together', () => {
     assert.deepStrictEqual(parseArgs(['-n2', 'a.txt']), {
       files: ['a.txt'],
-      option: { option: '-n', optionArg: 2 }
+      options: { option: '-n', optionArg: 2 }
     });
   });
 
   it('Should parse multiple files', () => {
     assert.deepStrictEqual(parseArgs(['a.txt', 'b.txt', 'c.txt']), {
       files: ['a.txt', 'b.txt', 'c.txt'],
-      option: { option: '-n', optionArg: 10 }
+      options: { option: '-n', optionArg: 10 }
     });
   });
 
   it('Should parse multiple files along with options', () => {
     assert.deepStrictEqual(parseArgs(['-c', '2', 'a.txt', 'b.txt', 'c.txt']), {
       files: ['a.txt', 'b.txt', 'c.txt'],
-      option: { option: '-c', optionArg: 2 }
+      options: { option: '-c', optionArg: 2 }
     });
   });
 
-  it('Should throw usage error when no arguments or files are given', () => {
+  it('Should throw usage error when no files are given', () => {
     assert.throws(() => parseArgs(['-n', '2']), {
       name: 'usageError',
       message: 'usage: head [-n lines | -c bytes] [file ...]'

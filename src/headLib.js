@@ -13,7 +13,7 @@ const head = (text, { option, optionArg }) => {
   return cutText(text, { separator, count: optionArg });
 };
 
-const getResults = (readFile, { fileName, option }) => {
+const getResult = (readFile, fileName, options) => {
   let content;
   try {
     content = readFile(fileName, 'utf8');
@@ -23,17 +23,18 @@ const getResults = (readFile, { fileName, option }) => {
       error: fileNotFoundError(fileName)
     };
   }
-  return { fileName, result: head(content, option) };
+  return { fileName, result: head(content, options) };
 };
 
 const headMain = (readFile, ...args) => {
-  const { files, option } = parseArgs(args);
+  const { files, options } = parseArgs(args);
 
   return files.map(fileName => {
-    return getResults(readFile, { fileName, option });
+    return getResult(readFile, fileName, options);
   });
 };
 
 exports.cutText = cutText;
 exports.head = head;
 exports.headMain = headMain;
+exports.getResult = getResult;
