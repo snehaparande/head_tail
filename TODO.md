@@ -1,11 +1,13 @@
 ## **TAIL:**
   **Todo:**
-  - [ ] Make `tail` function work for count (-n) option
+  - [ ] Make `tail` work for bytes (-c) option
 
   **Maybe:**
 
 
   **Done:**
+  - [x] Make `tail` function work for count (-n) option
+    - [x] Take the option as an object to the `tail`
   - [x] Make `tail` work for more than 10 lines
   - [x] Make `tail` work for 10 or less lines
   - [x] Write test case for tail
