@@ -45,7 +45,7 @@ const mockConsole = (expectedEles, actualEles) => {
 };
 
 describe('headMain', () => {
-  it('Should return the head of given file', () => {
+  it('Should print the head of given file', () => {
     const content = 'a\nb\nc\nd\ne\nf\ng\nh\ni\nj\nk\nl';
     const mockedReadFile = mockReadFile('a.txt', content);
     const expected = ['a\nb\nc\nd\ne\nf\ng\nh\ni\nj'];
@@ -55,7 +55,7 @@ describe('headMain', () => {
     assert.deepStrictEqual(actual, expected);
   });
 
-  it('Should throw an error when file is not present', () => {
+  it('Should print an error when file is not present', () => {
     const mockedReadFile = mockReadFile('a.txt', 'a\nb');
     const expected = ['head: b.txt: No such file or directory'];
     const actual = [];
@@ -64,7 +64,7 @@ describe('headMain', () => {
     assert.deepStrictEqual(actual, expected);
   });
 
-  it('Should return first 2 lines of given file', () => {
+  it('Should print first 2 lines of given file', () => {
     const mockedReadFile = mockReadFile('a.txt', 'a\nb\nc\nd\ne');
     const expected = ['a\nb'];
     const actual = [];
@@ -73,7 +73,7 @@ describe('headMain', () => {
     assert.deepStrictEqual(actual, expected);
   });
 
-  it('Should return first 2 characters of given file', () => {
+  it('Should print first 2 characters of given file', () => {
     const mockedReadFile = mockReadFile('a.txt', 'line1\nline2');
     const expected = ['li'];
     const actual = [];
@@ -82,7 +82,7 @@ describe('headMain', () => {
     assert.deepStrictEqual(actual, expected);
   });
 
-  it('Should return array of heads of given files', () => {
+  it('Should print heads of given files with header for each file', () => {
     const mockedReadFile = mockReadFile('a.txt', 'line1\nline2');
     const expected = [
       '==> a.txt <==',
@@ -96,7 +96,7 @@ describe('headMain', () => {
     assert.deepStrictEqual(actual, expected);
   });
 
-  it('Should return array of results and errors for non existing files', () => {
+  it('Should print heads of given files and errors for non-existing files', () => {
     const mockedReadFile = mockReadFile('a.txt', 'line1\nline2');
     const expected = [
       '==> a.txt <==',

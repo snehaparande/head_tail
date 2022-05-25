@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { tail } = require('../src/tailLib.js');
+const { tail, tailMain } = require('../src/tailLib.js');
 
 describe('tail', () => {
   it('Should return the same line when 1 line is given', () => {
@@ -47,6 +47,27 @@ describe('tail', () => {
   it('Should return all characters when count exceeds total', () => {
     const text = 'line';
     assert.strictEqual(tail(text, { option: '-c', count: 6 }), 'line');
+  });
+
+});
+
+describe('tailMain', () => {
+  it('Should return the tail of the given content', () => {
+    const content = 'a\nb\nc\nd\ne\nf\ng\nh\ni\nj\nk\nl';
+    const expected = 'c\nd\ne\nf\ng\nh\ni\nj\nk\nl';
+    assert.strictEqual(tailMain(content), expected);
+  });
+
+  it('Should return last 2 lines of the given content', () => {
+    const content = 'a\nb\nc\nd\ne';
+    const expected = 'd\ne';
+    assert.strictEqual(tailMain(content, '-n', '2'), expected);
+  });
+
+  it('Should return last 2 characters of the given content', () => {
+    const content = 'line1\nline2';
+    const expected = 'e2';
+    assert.strictEqual(tailMain(content, '-c', '2'), expected);
   });
 
 });

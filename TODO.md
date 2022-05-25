@@ -1,11 +1,15 @@
 ## **TAIL:**
   **Todo:**
- - [ ] Make `tailMain` function
- 
+  - [ ] Separate `parseTailArgs` to another file
+  - [ ] Rename `parseArgs` to `parseHeadArgs`
+  - [ ] Make a common `parseargs` for basic parsing of args of `head` and `tail`
+  - [ ] Make `tailMain` take file instead of content
+
   **Maybe:**
 
 
   **Done:**
+  - [x] Make `tailMain` function
   - [x] Change the directory structure
     - [x] Remove the `head` and `tail` separation
   - [x] Extract a function from `tail`
