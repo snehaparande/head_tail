@@ -1,33 +1,15 @@
+const { parseTailArgs } = require('./parseTailArgs');
+
 const cutText = (content, { separator, start, end }) => {
   const allEles = content.split(separator);
   const requiredEles = allEles.slice(start, end);
   return requiredEles.join(separator);
 };
 
-const tail = (content, { option, count }) => {
+const tail = (content, { option, optionArg }) => {
   const separators = { '-n': '\n', '-c': '' };
   const separator = separators[option];
-  return cutText(content, { separator, start: -count });
-};
-
-const isOption = (option) => {
-  return option.startsWith('-');
-};
-
-const parseTailArgs = (args) => {
-  const defaultOptions = {
-    option: '-n',
-    count: 10
-  };
-  if (args.length < 1) {
-    return defaultOptions;
-  }
-
-  if (isOption(args[0])) {
-    defaultOptions.option = args[0];
-    defaultOptions.count = args[1];
-  }
-  return defaultOptions;
+  return cutText(content, { separator, start: -optionArg });
 };
 
 const tailMain = (content, ...args) => {

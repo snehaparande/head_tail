@@ -1,6 +1,5 @@
 ## **TAIL:**
   **Todo:**
-  - [ ] Separate `parseTailArgs` to another file
   - [ ] Rename `parseArgs` to `parseHeadArgs`
   - [ ] Make a common `parseargs` for basic parsing of args of `head` and `tail`
   - [ ] Make `tailMain` take file instead of content
@@ -9,6 +8,8 @@
 
 
   **Done:**
+  - [x] Test `parseTailArgs`
+  - [x] Separate `parseTailArgs` to another file
   - [x] Make `tailMain` function
   - [x] Change the directory structure
     - [x] Remove the `head` and `tail` separation
