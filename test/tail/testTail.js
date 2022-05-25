@@ -32,4 +32,21 @@ describe('tail', () => {
     assert.strictEqual(tail(content, { option: '-n', count: 10 }), content);
   });
 
+  it('Should return one character from the text', () => {
+    let text = 'l1\nl2';
+    assert.strictEqual(tail(text, { option: '-c', count: 1 }), '2');
+    text = 'This is line';
+    assert.strictEqual(tail(text, { option: '-c', count: 1 }), 'e');
+  });
+
+  it('Should return given number of characters from the text', () => {
+    const text = 'line1\nline2';
+    assert.strictEqual(tail(text, { option: '-c', count: 7 }), '1\nline2');
+  });
+
+  it('Should return all characters when count exceeds total', () => {
+    const text = 'line';
+    assert.strictEqual(tail(text, { option: '-c', count: 6 }), 'line');
+  });
+
 });
