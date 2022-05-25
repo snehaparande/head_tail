@@ -1,12 +1,13 @@
 ## **TAIL:**
   **Todo:**
-  - [ ] Change the directory structure
-    - [ ] Remove the `head` and `tail` separation
-
+ - [ ] Make `tailMain` function
+ 
   **Maybe:**
 
 
   **Done:**
+  - [x] Change the directory structure
+    - [x] Remove the `head` and `tail` separation
   - [x] Extract a function from `tail`
   - [x] Make `tail` work for bytes (-c) option
   - [x] Make `tail` function work for count (-n) option

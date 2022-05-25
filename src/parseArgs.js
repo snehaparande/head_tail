@@ -1,10 +1,10 @@
-const { createIterator } = require('../iterator.js');
+const { createIterator } = require('./iterator.js');
 const {
   validCount,
   validOption,
   validFiles,
   validateCombinedOptions
-} = require('../validation.js');
+} = require('./validation.js');
 
 const isOption = (option) => {
   return option.startsWith('-');

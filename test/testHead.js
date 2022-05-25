@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { cutText, head } = require('../../src/head/headLib.js');
+const { cutText, head } = require('../src/headLib.js');
 
 describe('cutText', () => {
   it('Should return the same line when 1 line is given', () => {

@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { tail } = require('../../src/tail/tailLib.js');
+const { tail } = require('../src/tailLib.js');
 
 describe('tail', () => {
   it('Should return the same line when 1 line is given', () => {

@@ -4,7 +4,7 @@ const {
   validCount,
   validOption,
   splitCombinedOptions
-} = require('../../src/head/parseArgs.js');
+} = require('../src/parseArgs.js');
 
 describe('validCount', () => {
   it('Should return valid count if count is valid', () => {
