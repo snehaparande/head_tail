@@ -1,11 +1,12 @@
 ## **TAIL:**
   **Todo:**
-  - [ ] Make `tail` work for more than 10 lines
+  - [ ] Make `tail` function work for count (-n) option
 
   **Maybe:**
 
 
   **Done:**
+  - [x] Make `tail` work for more than 10 lines
   - [x] Make `tail` work for 10 or less lines
   - [x] Write test case for tail
   - [x] Make `testTail.js`.

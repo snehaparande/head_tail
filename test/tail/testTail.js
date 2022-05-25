@@ -14,4 +14,10 @@ describe('tail', () => {
     assert.strictEqual(tail(text), text);
   });
 
+  it('Should return last 10 lines of the given text', () => {
+    const text = 'l1\nl2\nl3\nl4\nl5\nl6\nl7\nl8\nl9\nl10\nl11';
+    const expected = 'l2\nl3\nl4\nl5\nl6\nl7\nl8\nl9\nl10\nl11';
+    assert.strictEqual(tail(text), expected);
+  });
+
 });
