@@ -1,10 +1,10 @@
 const assert = require('assert');
 const {
-  parseArgs,
+  parseHeadArgs,
   validCount,
   validOption,
   splitCombinedOptions
-} = require('../src/parseArgs.js');
+} = require('../src/parseHeadArgs.js');
 
 describe('validCount', () => {
   it('Should return valid count if count is valid', () => {
@@ -46,90 +46,90 @@ describe('splitCombinedOptions', () => {
 
 });
 
-describe('parseArgs', () => {
+describe('parseHeadArgs', () => {
   it('Should parse only file name ', () => {
-    assert.deepStrictEqual(parseArgs(['a.txt']), {
+    assert.deepStrictEqual(parseHeadArgs(['a.txt']), {
       files: ['a.txt'],
       options: { option: '-n', optionArg: 10 }
     });
   });
 
   it('Should parse -n option along with file name ', () => {
-    assert.deepStrictEqual(parseArgs(['-n', '5', 'a.txt']), {
+    assert.deepStrictEqual(parseHeadArgs(['-n', '5', 'a.txt']), {
       files: ['a.txt'],
       options: { option: '-n', optionArg: 5 }
     });
   });
 
   it('Should parse -c option along with file name ', () => {
-    assert.deepStrictEqual(parseArgs(['-c', '5', 'a.txt']), {
+    assert.deepStrictEqual(parseHeadArgs(['-c', '5', 'a.txt']), {
       files: ['a.txt'],
       options: { option: '-c', optionArg: 5 }
     });
   });
 
   it('Should parse same option multiple times along with file name ', () => {
-    assert.deepStrictEqual(parseArgs(['-n', '5', '-n', '3', 'a.txt']), {
+    assert.deepStrictEqual(parseHeadArgs(['-n', '5', '-n', '3', 'a.txt']), {
       files: ['a.txt'],
       options: { option: '-n', optionArg: 3 }
     });
   });
 
   it('Should throw an error when option is invalid', () => {
-    assert.throws(() => parseArgs(['-h']), {
+    assert.throws(() => parseHeadArgs(['-h']), {
       name: 'illegalOption',
       message: 'head: illegal option -- h\nusage: head [-n lines | -c bytes] [file ...]'
     });
   });
 
   it('Should throw an error when count is invalid', () => {
-    assert.throws(() => parseArgs(['-n', '0', 'a.txt']), {
+    assert.throws(() => parseHeadArgs(['-n', '0', 'a.txt']), {
       name: 'illegalCount',
       message: 'head: illegal line count -- 0'
     });
   });
 
   it('Should parse the option when option and count are together', () => {
-    assert.deepStrictEqual(parseArgs(['-n2', 'a.txt']), {
+    assert.deepStrictEqual(parseHeadArgs(['-n2', 'a.txt']), {
       files: ['a.txt'],
       options: { option: '-n', optionArg: 2 }
     });
   });
 
   it('Should parse multiple files', () => {
-    assert.deepStrictEqual(parseArgs(['a.txt', 'b.txt', 'c.txt']), {
+    assert.deepStrictEqual(parseHeadArgs(['a.txt', 'b.txt', 'c.txt']), {
       files: ['a.txt', 'b.txt', 'c.txt'],
       options: { option: '-n', optionArg: 10 }
     });
   });
 
   it('Should parse multiple files along with options', () => {
-    assert.deepStrictEqual(parseArgs(['-c', '2', 'a.txt', 'b.txt', 'c.txt']), {
+    assert.deepStrictEqual(parseHeadArgs(['-c', '2', 'a.txt', 'b.txt', 'c.txt']), {
       files: ['a.txt', 'b.txt', 'c.txt'],
       options: { option: '-c', optionArg: 2 }
     });
   });
 
   it('Should throw usage error when no files are given', () => {
-    assert.throws(() => parseArgs(['-n', '2']), {
+    assert.throws(() => parseHeadArgs(['-n', '2']), {
       name: 'usageError',
       message: 'usage: head [-n lines | -c bytes] [file ...]'
     });
-    assert.throws(() => parseArgs([]), {
+    assert.throws(() => parseHeadArgs([]), {
       name: 'usageError',
       message: 'usage: head [-n lines | -c bytes] [file ...]'
     });
   });
 
   it('Should parse arguments from format -[number]', () => {
-    assert.deepStrictEqual(parseArgs(['-2', 'a.txt']), {
+    assert.deepStrictEqual(parseHeadArgs(['-2', 'a.txt']), {
       files: ['a.txt'],
       options: { option: '-n', optionArg: 2 }
     });
   });
 
   it('should throw an error when options are combined', () => {
-    assert.throws(() => parseArgs(['-n', '2', '-c', '2', 'a.txt']), {
+    assert.throws(() => parseHeadArgs(['-n', '2', '-c', '2', 'a.txt']), {
       name: 'combinedOptionsError',
       message: 'head: can\'t combine line and byte counts'
     });

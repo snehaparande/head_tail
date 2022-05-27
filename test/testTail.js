@@ -51,23 +51,50 @@ describe('tail', () => {
 
 });
 
+const mockReadFile = (fileName, content) => {
+  return (actualFile, unicode) => {
+    assert.strictEqual(fileName, actualFile);
+    assert.strictEqual(unicode, 'utf8');
+    return content;
+  };
+};
+
+const mockConsole = (expectedEles, actualEles) => {
+  let index = 0;
+  return (arg) => {
+    actualEles.push(arg);
+    assert.deepStrictEqual(arg, expectedEles[index]);
+    index++;
+  };
+};
+
 describe('tailMain', () => {
   it('Should return the tail of the given content', () => {
     const content = 'a\nb\nc\nd\ne\nf\ng\nh\ni\nj\nk\nl';
-    const expected = 'c\nd\ne\nf\ng\nh\ni\nj\nk\nl';
-    assert.strictEqual(tailMain(content), expected);
+    const mockedReadFile = mockReadFile('a.txt', content);
+    const expected = ['c\nd\ne\nf\ng\nh\ni\nj\nk\nl'];
+    const actual = [];
+    const mockedConsole = mockConsole(expected, actual);
+    tailMain(mockedReadFile, mockedConsole, mockedConsole, 'a.txt');
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Should return last 2 lines of the given content', () => {
-    const content = 'a\nb\nc\nd\ne';
-    const expected = 'd\ne';
-    assert.strictEqual(tailMain(content, '-n', '2'), expected);
+    const mockedReadFile = mockReadFile('a.txt', 'a\nb\nc\nd\ne');
+    const expected = ['d\ne'];
+    const actual = [];
+    const mockedConsole = mockConsole(expected, actual);
+    tailMain(mockedReadFile, mockedConsole, mockedConsole, '-n', '2', 'a.txt');
+    assert.deepStrictEqual(actual, expected);
   });
 
   it('Should return last 2 characters of the given content', () => {
-    const content = 'line1\nline2';
-    const expected = 'e2';
-    assert.strictEqual(tailMain(content, '-c', '2'), expected);
+    const mockedReadFile = mockReadFile('a.txt', 'line1\nline2');
+    const expected = ['e2'];
+    const actual = [];
+    const mockedConsole = mockConsole(expected, actual);
+    tailMain(mockedReadFile, mockedConsole, mockedConsole, '-c', '2', 'a.txt');
+    assert.deepStrictEqual(actual, expected);
   });
 
 });

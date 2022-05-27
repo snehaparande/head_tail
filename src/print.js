@@ -22,11 +22,10 @@ const print = (results, consoleLog, consoleError) => {
     return printWithoutHeader(results[0], consoleLog, consoleError);
   }
 
-  let status = 0;
   results.forEach(element => {
-    status = status || printWithHeader(element, consoleLog, consoleError);
+    printWithHeader(element, consoleLog, consoleError);
   });
-  return status;
+  return results.some(result => result.error) ? 1 : 0;
 };
 
 exports.print = print;

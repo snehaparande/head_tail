@@ -1,4 +1,4 @@
-const { parseArgs } = require('./parseArgs.js');
+const { parseHeadArgs } = require('./parseHeadArgs.js');
 const { print } = require('./print.js');
 const { fileNotFoundError } = require('./validation.js');
 
@@ -29,7 +29,7 @@ const getResult = (readFile, fileName, options) => {
 };
 
 const headMain = (readFile, consoleError, consoleLog, ...args) => {
-  const { files, options } = parseArgs(args);
+  const { files, options } = parseHeadArgs(args);
 
   const results = files.map(fileName => {
     return getResult(readFile, fileName, options);

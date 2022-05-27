@@ -24,7 +24,7 @@ const splitCombinedOptions = (args) => {
   return splittedOptions.filter(element => element.length !== 0);
 };
 
-const parseArgs = (args) => {
+const parseHeadArgs = (args) => {
   const splittedArgs = splitCombinedOptions(args);
   validateCombinedOptions(splittedArgs);
   const argsIterator = createIterator(splittedArgs);
@@ -45,7 +45,7 @@ const parseArgs = (args) => {
   };
 };
 
-exports.parseArgs = parseArgs;
+exports.parseHeadArgs = parseHeadArgs;
 exports.validCount = validCount;
 exports.validOption = validOption;
 exports.splitCombinedOptions = splitCombinedOptions;
