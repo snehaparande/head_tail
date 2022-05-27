@@ -1,56 +1,56 @@
 const assert = require('assert');
-const { cutText, head } = require('../src/headLib.js');
+const {
+  head,
+  firstNLines,
+  firstNBytes
+} = require('../src/headLib.js');
 
-describe('cutText', () => {
-  it('Should return the same line when 1 line is given', () => {
-    assert.strictEqual(cutText('This is line', '\n', 10), 'This is line');
-    const text = 'This is another line';
-    assert.strictEqual(cutText(text, { separator: '\n', count: 10 }), text);
+describe('firstNLines', () => {
+  const defaultCount = 5;
+
+  it('Should return given text when lines are less than or equal to count',
+    () => {
+      let text = 'line1\nline2';
+      assert.strictEqual(firstNLines(text, defaultCount), text);
+      text = 'l1\nl2\nl3\nl4\nl5';
+      assert.strictEqual(firstNLines(text, defaultCount), text);
+    });
+
+  it('Should return first N lines of the given text', () => {
+    const text = 'l1\nl2\nl3\nl4\nl5\nl6\nl7';
+    assert.strictEqual(firstNLines(text, defaultCount), 'l1\nl2\nl3\nl4\nl5');
   });
 
-  it('Should return all the lines when 10 or less lines are given', () => {
-    let text = 'line1\nline2\nline3\nline4\nline5';
-    assert.strictEqual(cutText(text, { separator: '\n', count: 10 }), text);
-    text = 'l1\nl2\nl3\nl4\nl5\nl6\nl7\nl8\nl9\nl10';
-    assert.strictEqual(cutText(text, { separator: '\n', count: 10 }), text);
+  it('Should return empty string when text is empty or count is 0', () => {
+    let text = '';
+    assert.strictEqual(firstNLines(text, defaultCount), text);
+    text = 'line1';
+    assert.strictEqual(firstNLines(text, 0), '');
   });
 
-  it('Should return first 10 lines of the given text', () => {
-    const text = 'l1\nl2\nl3\nl4\nl5\nl6\nl7\nl8\nl9\nl10\nl11';
-    const expected = 'l1\nl2\nl3\nl4\nl5\nl6\nl7\nl8\nl9\nl10';
-    assert.strictEqual(cutText(text, { separator: '\n', count: 10 }), expected);
-  });
+});
 
-  it('Should return given number of lines from the text', () => {
+describe('firstNBytes', () => {
+  const defaultCount = 5;
+
+  it('Should return given text when characters are less than or equal to count',
+    () => {
+      let text = 'l1';
+      assert.strictEqual(firstNBytes(text, defaultCount), text);
+      text = 'line1';
+      assert.strictEqual(firstNBytes(text, defaultCount), text);
+    });
+
+  it('Should return first N characters of the given text', () => {
     const text = 'l1\nl2\nl3\nl4\nl5';
-    assert.strictEqual(cutText(text, { separator: '\n', count: 2 }), 'l1\nl2');
+    assert.strictEqual(firstNBytes(text, defaultCount), 'l1\nl2');
   });
 
-  it('Should return all lines when number of lines are more than total', () => {
-    const text = 'l1\nl2\nl3\nl4\nl5';
-    assert.strictEqual(cutText(text, { separator: '\n', count: 10 }), text);
-  });
-
-  it('Should return one character from the text', () => {
-    let text = 'l1\nl2';
-    assert.strictEqual(cutText(text, { separator: '', count: 1 }), 'l');
-    text = 'This is line';
-    assert.strictEqual(cutText(text, { separator: '', count: 1 }), 'T');
-  });
-
-  it('Should return 2 characters from the text', () => {
-    const text = 'This is line';
-    assert.strictEqual(cutText(text, { separator: '', count: 2 }), 'Th');
-  });
-
-  it('Should return given number of characters from the text', () => {
-    const text = 'line1\nline2';
-    assert.strictEqual(cutText(text, { separator: '', count: 7 }), 'line1\nl');
-  });
-
-  it('Should return all characters when count exceeds total', () => {
-    const text = 'line';
-    assert.strictEqual(cutText(text, { separator: '', count: 6 }), 'line');
+  it('Should return empty string when text is empty or count is 0', () => {
+    let text = '';
+    assert.strictEqual(firstNBytes(text, defaultCount), text);
+    text = 'line1';
+    assert.strictEqual(firstNBytes(text, 0), '');
   });
 
 });

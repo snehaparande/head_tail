@@ -1,7 +1,8 @@
 ## **TAIL:**
   - **Todo:**
-    - [ ] Pass the process arguments to `main`
+    - [ ] Test `slicer` function
     - [ ] Return the exit code from `headMain` and `tailMain`
+    - [ ] Separate try-catch for reading file in a function
     - [ ] Make a common `parseargs` for basic parsing of args of `head` and `tail`
     - [ ] Make `tail` throw an error for repeating the same option
     - [ ] Make `tail` work for `-r` option
@@ -11,6 +12,11 @@
 
 
   - **Done:**
+    - [x] Passing separator to the function
+      - [x] Don't pass the separator to the `cutText` function 
+      - [x] Try to hardcode the separator
+      - [x] Think of extracting functions for lines and bytes
+    - [x] Pass the process arguments to `main`
     - [x] Use `process.exitCode` intead of `process.exit` function in `head.js` and `tail.js`
     - [x] Make `tail.js` work from command line
     - [x] Disable console error in `eslintrc.json` for `tail.js` file

@@ -2,16 +2,32 @@ const { parseHeadArgs } = require('./parseHeadArgs.js');
 const { print } = require('./print.js');
 const { fileNotFoundError } = require('./validation.js');
 
-const cutText = (text, { separator, count }) => {
-  const allElements = text.split(separator);
+const firstNLines = (text, count) => {
+  const allElements = text.split('\n');
   const requiredEles = allElements.slice(0, count);
-  return requiredEles.join(separator);
+  return requiredEles.join('\n');
+};
+
+const firstNBytes = (text, count) => {
+  const allElements = text.split('');
+  const requiredEles = allElements.slice(0, count);
+  return requiredEles.join('');
+};
+
+const slicer = (option) => {
+  switch (option) {
+    case '-n':
+      return firstNLines;
+    case '-c':
+      return firstNBytes;
+    default:
+      break;
+  }
 };
 
 const head = (text, { option, optionArg }) => {
-  const separators = { '-n': '\n', '-c': '' };
-  const separator = separators[option];
-  return cutText(text, { separator, count: optionArg });
+  const sliceText = slicer(option);
+  return sliceText(text, optionArg);
 };
 
 const getResult = (readFile, fileName, options) => {
@@ -38,7 +54,8 @@ const headMain = (readFile, consoleError, consoleLog, ...args) => {
   return print(results, consoleLog, consoleError);
 };
 
-exports.cutText = cutText;
 exports.head = head;
 exports.headMain = headMain;
 exports.getResult = getResult;
+exports.firstNLines = firstNLines;
+exports.firstNBytes = firstNBytes;
