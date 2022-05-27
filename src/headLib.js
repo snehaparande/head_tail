@@ -44,6 +44,8 @@ const getResult = (readFile, fileName, options) => {
   return { fileName, error: false, result: head(content, options) };
 };
 
+const getExitCode = (results) => results.some(result => result.error) ? 1 : 0;
+
 const headMain = (readFile, consoleError, consoleLog, ...args) => {
   const { files, options } = parseHeadArgs(args);
 
@@ -51,7 +53,8 @@ const headMain = (readFile, consoleError, consoleLog, ...args) => {
     return getResult(readFile, fileName, options);
   });
 
-  return print(results, consoleLog, consoleError);
+  print(results, consoleLog, consoleError);
+  return getExitCode(results);
 };
 
 exports.head = head;

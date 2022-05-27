@@ -1,17 +1,21 @@
 ## **TAIL:**
   - **Todo:**
     - [ ] Test `slicer` function
-    - [ ] Return the exit code from `headMain` and `tailMain`
+    - [ ] Test `getExitCode` function    
+    - [x] Return the exit code from `tailMain`
+    - [ ] Make `head` throw every kind of error
     - [ ] Separate try-catch for reading file in a function
     - [ ] Make a common `parseargs` for basic parsing of args of `head` and `tail`
     - [ ] Make `tail` throw an error for repeating the same option
     - [ ] Make `tail` work for `-r` option
     - [ ] Make `tail` work for `-q` option
 
+
   - **Maybe:**
 
 
   - **Done:**
+    - [x] Return the exit code from `headMain`
     - [x] Passing separator to the function
       - [x] Don't pass the separator to the `cutText` function 
       - [x] Try to hardcode the separator
