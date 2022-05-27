@@ -1,7 +1,7 @@
 ## **TAIL:**
   - **Todo:**
+    - [ ] Pass the process arguments to `main`
     - [ ] Return the exit code from `headMain` and `tailMain`
-    - [ ] Use `process.exitCode` intead of `process.exit` function in `head.js` and `tail.js`
     - [ ] Make a common `parseargs` for basic parsing of args of `head` and `tail`
     - [ ] Make `tail` throw an error for repeating the same option
     - [ ] Make `tail` work for `-r` option
@@ -11,6 +11,7 @@
 
 
   - **Done:**
+    - [x] Use `process.exitCode` intead of `process.exit` function in `head.js` and `tail.js`
     - [x] Make `tail.js` work from command line
     - [x] Disable console error in `eslintrc.json` for `tail.js` file
     - [x] Make `tailMain` take file instead of content
