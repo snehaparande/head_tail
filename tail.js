@@ -2,12 +2,12 @@ const fs = require('fs');
 
 const { tailMain } = require('./src/tailLib.js');
 
-const main = () => {
+const main = (args) => {
   try {
     process.exitCode = tailMain(fs.readFileSync,
       console.error,
       console.log,
-      ...process.argv.slice(2)
+      ...args
     );
   } catch (error) {
     console.error(error.message);
@@ -15,4 +15,4 @@ const main = () => {
   }
 };
 
-main();
+main(process.argv.slice(2));

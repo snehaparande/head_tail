@@ -1,12 +1,12 @@
 const fs = require('fs');
 const { headMain } = require('./src/headLib.js');
 
-const main = () => {
+const main = (args) => {
   try {
     process.exitCode = headMain(fs.readFileSync,
       console.error,
       console.log,
-      ...process.argv.slice(2)
+      ...args
     );
   } catch (error) {
     console.error(error.message);
@@ -14,4 +14,4 @@ const main = () => {
   }
 };
 
-main();
+main(process.argv.slice(2));
