@@ -2,7 +2,8 @@ const assert = require('assert');
 const {
   head,
   firstNLines,
-  firstNBytes
+  firstNBytes,
+  getExitCode
 } = require('../src/headLib.js');
 
 describe('firstNLines', () => {
@@ -64,6 +65,19 @@ describe('head', () => {
   it('Should return 2 charactors from the text', () => {
     const text = 'l1\nl2\nl3';
     assert.strictEqual(head(text, { option: '-c', optionArg: 2 }), 'l1');
+  });
+
+});
+
+describe('getExitCode', () => {
+  it('Should return 0 when no erro is present', () => {
+    const results = [{ error: false }, { error: false }, { error: false }];
+    assert.strictEqual(getExitCode(results), 0);
+  });
+
+  it('Should return 1 when error is present', () => {
+    const results = [{ error: false }, { error: true }, { error: false }];
+    assert.strictEqual(getExitCode(results), 1);
   });
 
 });

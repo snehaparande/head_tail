@@ -60,5 +60,6 @@ const headMain = (readFile, consoleError, consoleLog, ...args) => {
 exports.head = head;
 exports.headMain = headMain;
 exports.getResult = getResult;
+exports.getExitCode = getExitCode;
 exports.firstNLines = firstNLines;
 exports.firstNBytes = firstNBytes;

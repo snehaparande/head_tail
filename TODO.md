@@ -1,9 +1,6 @@
 ## **TAIL:**
   - **Todo:**
-    - [ ] Test `slicer` function
-    - [ ] Test `getExitCode` function    
-    - [x] Return the exit code from `tailMain`
-    - [ ] Make `head` throw every kind of error
+    - [ ] Return the exit code from `tailMain`
     - [ ] Separate try-catch for reading file in a function
     - [ ] Make a common `parseargs` for basic parsing of args of `head` and `tail`
     - [ ] Make `tail` throw an error for repeating the same option
@@ -15,13 +12,8 @@
 
 
   - **Done:**
-    - [x] Return the exit code from `headMain`
-    - [x] Passing separator to the function
-      - [x] Don't pass the separator to the `cutText` function 
-      - [x] Try to hardcode the separator
-      - [x] Think of extracting functions for lines and bytes
     - [x] Pass the process arguments to `main`
-    - [x] Use `process.exitCode` intead of `process.exit` function in `head.js` and `tail.js`
+    - [x] Use `process.exitCode` intead of `process.exit` function in `tail.js`
     - [x] Make `tail.js` work from command line
     - [x] Disable console error in `eslintrc.json` for `tail.js` file
     - [x] Make `tailMain` take file instead of content
@@ -47,10 +39,22 @@
 
 ## **HEAD:**
   - **Todo:**
+    - [ ] Test `slicer` function
+    - [ ] Separate try-catch for reading file in a function
+    - [ ] Make `head` throw every kind of file error
 
   - **Maybe:**
+    - [ ] Where should I choose the slicer function
 
   - **Done:**
+    - [x] Test `getExitCode` function    
+    - [x] Return the exit code from `headMain`
+    - [x] Passing separator to the function
+      - [x] Don't pass the separator to the `cutText` function 
+      - [x] Try to hardcode the separator
+      - [x] Think of extracting functions for lines and bytes
+    - [x] Pass the process arguments to `main`
+    - [x] Use `process.exitCode` intead of `process.exit` function in `head.js`
     - [x] Return exit code
     - [x] Refactor `headMain`
       - [x] Ectract a function for printing
