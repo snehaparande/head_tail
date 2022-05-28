@@ -39,7 +39,7 @@ const readFile = (fileReader, fileName) => {
   }
 };
 
-const getResult = (fileReader, file, options) => {
+const headOfFile = (fileReader, file, options) => {
   const { fileName, content, error } = readFile(fileReader, file);
 
   if (error) {
@@ -54,7 +54,7 @@ const headMain = (fileReader, consoleError, consoleLog, ...args) => {
   const { files, options } = parseHeadArgs(args);
 
   const results = files.map(fileName => {
-    return getResult(fileReader, fileName, options);
+    return headOfFile(fileReader, fileName, options);
   });
 
   print(results, consoleLog, consoleError);
@@ -63,7 +63,7 @@ const headMain = (fileReader, consoleError, consoleLog, ...args) => {
 
 exports.head = head;
 exports.headMain = headMain;
-exports.getResult = getResult;
+exports.headOfFile = headOfFile;
 exports.getExitCode = getExitCode;
 exports.firstNLines = firstNLines;
 exports.firstNBytes = firstNBytes;

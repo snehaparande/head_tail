@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { headMain, getResult } = require('../src/headLib.js');
+const { headMain, headOfFile } = require('../src/headLib.js');
 
 const mockReadFile = (fileName, content) => {
   return (actualFile, unicode) => {
@@ -9,12 +9,12 @@ const mockReadFile = (fileName, content) => {
   };
 };
 
-describe('getResult', () => {
+describe('headOfFile', () => {
   const mockedReadFile = mockReadFile('a.txt', 'a\nb\nc');
   const options = { option: '-n', optionArg: 2 };
 
   it('Should return an object containing file name and head', () => {
-    assert.deepStrictEqual(getResult(mockedReadFile, 'a.txt', options), {
+    assert.deepStrictEqual(headOfFile(mockedReadFile, 'a.txt', options), {
       fileName: 'a.txt',
       error: false,
       result: 'a\nb'
@@ -22,7 +22,7 @@ describe('getResult', () => {
   });
 
   it('Should return object containing file name and error', () => {
-    assert.deepStrictEqual(getResult(mockedReadFile, 'b.txt', options), {
+    assert.deepStrictEqual(headOfFile(mockedReadFile, 'b.txt', options), {
       fileName: 'b.txt',
       error: true,
       result: {

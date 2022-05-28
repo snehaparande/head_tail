@@ -43,11 +43,11 @@
     - [ ] Make `head` throw every kind of file error
 
   - **Maybe:**
-    - [ ] Consider changing name of `getResult` fucntion
     - [ ] Consider structure of head result of a file
     - [ ] Where should I choose the slicer function
 
   - **Done:**
+    - [x] Change name of `getResult` fucntion to `headOfFile`
     - [x] Separate try-catch for reading file in a function
     - [x] Rename the `readFile` to `fileReader`
     - [x] Test `slicer` function
