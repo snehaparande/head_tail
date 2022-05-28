@@ -1,5 +1,6 @@
 const assert = require('assert');
-const { headMain, headOfFile } = require('../src/headLib.js');
+const { fileNotFoundError } = require('../src/validation');
+const { headMain, headOfFile, readFile } = require('../src/headLib.js');
 
 const mockReadFile = (fileName, content) => {
   return (actualFile, unicode) => {
@@ -8,6 +9,30 @@ const mockReadFile = (fileName, content) => {
     return content;
   };
 };
+
+describe('readFile', () => {
+  let fileName = 'a.txt';
+  const content = 'line1\nline2';
+  const fileReader = mockReadFile(fileName, content);
+  it('Should return an object containing file contents when file exists',
+    () => {
+      assert.deepStrictEqual(readFile(fileReader, 'a.txt'), {
+        fileName,
+        content
+      });
+    });
+
+  it('Should return an object containing error when file doesn\'t exist',
+    () => {
+      fileName = 'b.txt';
+      const error = fileNotFoundError(fileName);
+      assert.deepStrictEqual(readFile(fileReader, fileName), {
+        fileName,
+        error
+      });
+    });
+
+});
 
 describe('headOfFile', () => {
   const mockedReadFile = mockReadFile('a.txt', 'a\nb\nc');

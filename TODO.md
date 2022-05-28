@@ -39,14 +39,16 @@
 
 ## **HEAD:**
   - **Todo:**
-    - [ ] Test `readFile`
-    - [ ] Make `head` throw every kind of file error
+    - [ ] Change the conctract of `mockReadFile` in `testHeadMain.js`
+      - [ ] Make `mockReadFile` read different files
+    - [ ] Make `head` throw different kind of file errors
 
   - **Maybe:**
     - [ ] Consider structure of head result of a file
     - [ ] Where should I choose the slicer function
 
   - **Done:**
+    - [x] Test `readFile`
     - [x] Change name of `getResult` fucntion to `headOfFile`
     - [x] Separate try-catch for reading file in a function
     - [x] Rename the `readFile` to `fileReader`
