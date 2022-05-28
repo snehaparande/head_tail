@@ -39,7 +39,7 @@
 
 ## **HEAD:**
   - **Todo:**
-    - [ ] Separate try-catch for reading file in a function
+    - [ ] Test `readFile`
     - [ ] Make `head` throw every kind of file error
 
   - **Maybe:**
@@ -48,6 +48,7 @@
     - [ ] Where should I choose the slicer function
 
   - **Done:**
+    - [x] Separate try-catch for reading file in a function
     - [x] Rename the `readFile` to `fileReader`
     - [x] Test `slicer` function
     - [x] Test `getExitCode` function    

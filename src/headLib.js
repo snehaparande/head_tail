@@ -30,18 +30,22 @@ const head = (text, { option, optionArg }) => {
   return sliceText(text, optionArg);
 };
 
-const getResult = (fileReader, fileName, options) => {
-  let content;
+const readFile = (fileReader, fileName) => {
   try {
-    content = fileReader(fileName, 'utf8');
+    const content = fileReader(fileName, 'utf8');
+    return { fileName, content };
   } catch (error) {
-    return {
-      fileName,
-      error: true,
-      result: fileNotFoundError(fileName)
-    };
+    return { fileName, error: fileNotFoundError(fileName) };
   }
-  return { fileName, error: false, result: head(content, options) };
+};
+
+const getResult = (fileReader, file, options) => {
+  const { fileName, content, error } = readFile(fileReader, file);
+
+  if (error) {
+    return { fileName, error: true, result: error };
+  }
+  return { fileName: file, error: false, result: head(content, options) };
 };
 
 const getExitCode = (results) => results.some(result => result.error) ? 1 : 0;
