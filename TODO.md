@@ -39,7 +39,6 @@
 
 ## **HEAD:**
   - **Todo:**
-    - [ ] Test `slicer` function
     - [ ] Separate try-catch for reading file in a function
     - [ ] Make `head` throw every kind of file error
 
@@ -47,6 +46,7 @@
     - [ ] Where should I choose the slicer function
 
   - **Done:**
+    - [x] Test `slicer` function
     - [x] Test `getExitCode` function    
     - [x] Return the exit code from `headMain`
     - [x] Passing separator to the function

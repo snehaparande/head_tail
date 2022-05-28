@@ -3,7 +3,8 @@ const {
   head,
   firstNLines,
   firstNBytes,
-  getExitCode
+  getExitCode,
+  slicer
 } = require('../src/headLib.js');
 
 describe('firstNLines', () => {
@@ -78,6 +79,17 @@ describe('getExitCode', () => {
   it('Should return 1 when error is present', () => {
     const results = [{ error: false }, { error: true }, { error: false }];
     assert.strictEqual(getExitCode(results), 1);
+  });
+
+});
+
+describe('slicer', () => {
+  it('Should return a reference of \'firstNLines\' function', () => {
+    assert.strictEqual(slicer('-n'), firstNLines);
+  });
+
+  it('Should return a reference of \'firstNBytes\' function', () => {
+    assert.strictEqual(slicer('-c'), firstNBytes);
   });
 
 });

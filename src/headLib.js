@@ -63,3 +63,4 @@ exports.getResult = getResult;
 exports.getExitCode = getExitCode;
 exports.firstNLines = firstNLines;
 exports.firstNBytes = firstNBytes;
+exports.slicer = slicer;
