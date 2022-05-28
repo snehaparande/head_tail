@@ -30,10 +30,10 @@ const head = (text, { option, optionArg }) => {
   return sliceText(text, optionArg);
 };
 
-const getResult = (readFile, fileName, options) => {
+const getResult = (fileReader, fileName, options) => {
   let content;
   try {
-    content = readFile(fileName, 'utf8');
+    content = fileReader(fileName, 'utf8');
   } catch (error) {
     return {
       fileName,
@@ -46,11 +46,11 @@ const getResult = (readFile, fileName, options) => {
 
 const getExitCode = (results) => results.some(result => result.error) ? 1 : 0;
 
-const headMain = (readFile, consoleError, consoleLog, ...args) => {
+const headMain = (fileReader, consoleError, consoleLog, ...args) => {
   const { files, options } = parseHeadArgs(args);
 
   const results = files.map(fileName => {
-    return getResult(readFile, fileName, options);
+    return getResult(fileReader, fileName, options);
   });
 
   print(results, consoleLog, consoleError);

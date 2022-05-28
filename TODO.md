@@ -43,9 +43,12 @@
     - [ ] Make `head` throw every kind of file error
 
   - **Maybe:**
+    - [ ] Consider changing name of `getResult` fucntion
+    - [ ] Consider structure of head result of a file
     - [ ] Where should I choose the slicer function
 
   - **Done:**
+    - [x] Rename the `readFile` to `fileReader`
     - [x] Test `slicer` function
     - [x] Test `getExitCode` function    
     - [x] Return the exit code from `headMain`

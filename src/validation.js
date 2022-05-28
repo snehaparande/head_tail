@@ -23,7 +23,7 @@ const fileNotFoundError = (fileName) => {
   return {
     name: 'readFileError',
     message: `head: ${fileName}: No such file or directory`,
-    fileName: fileName
+    fileName
   };
 };
 
